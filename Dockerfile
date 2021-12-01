@@ -18,26 +18,7 @@ ENV JAVA_HOME='/usr/lib/jvm/java-11-openjdk' \
     SQ_LOGS_DIR="/opt/sonarqube/logs" \
     SQ_TEMP_DIR="/opt/sonarqube/temp"
 
-RUN set -eux; \
-    addgroup -S -g 1000 sonarqube; \
-    adduser -S -D -u 1000 -G sonarqube sonarqube; \
-    apk add --no-cache --virtual build-dependencies gnupg unzip curl; \
-    apk add --no-cache bash su-exec ttf-dejavu openjdk11-jre; \
-    # pub   2048R/D26468DE 2015-05-25
-    #       Key fingerprint = F118 2E81 C792 9289 21DB  CAB4 CFCA 4A29 D264 68DE
-    # uid                  sonarsource_deployer (Sonarsource Deployer) <infra@sonarsource.com>
-    # sub   2048R/06855C1D 2015-05-25
-    echo "networkaddress.cache.ttl=5" >> "${JAVA_HOME}/conf/security/java.security"; \
-    sed --in-place --expression="s?securerandom.source=file:/dev/random?securerandom.source=file:/dev/urandom?g" "${JAVA_HOME}/conf/security/java.security"; \
-    for server in $(shuf -e ha.pool.sks-keyservers.net \
-                            hkp://p80.pool.sks-keyservers.net:80 \
-                            keyserver.ubuntu.com \
-                            hkp://keyserver.ubuntu.com:80 \
-                            pgp.mit.edu) ; do \
-        gpg --batch --keyserver "${server}" --recv-keys 679F1EE92B19609DE816FDE81DB198F93525EC1A && break || : ; \
-    done; \
-    mkdir --parents /opt; \
-    cd /opt; \
+RUN cd /opt; \
     curl --fail --location --output sonarqube.zip --silent --show-error "${SONARQUBE_ZIP_URL}"; \
     curl --fail --location --output sonarqube.zip.asc --silent --show-error "${SONARQUBE_ZIP_URL}.asc"; \
     gpg --batch --verify sonarqube.zip.asc sonarqube.zip; \
