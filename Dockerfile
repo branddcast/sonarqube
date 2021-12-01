@@ -1,4 +1,4 @@
-FROM registry.access.redhat.com/ubi8/ubi-minimal
+FROM registry.access.redhat.com/ubi8/openjdk-11
 
 ENV LANG='en_US.UTF-8' \
     LANGUAGE='en_US:en' \
