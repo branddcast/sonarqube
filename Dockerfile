@@ -14,10 +14,9 @@ ENV JAVA_HOME='/usr/lib/jvm/java-11' \
     SQ_LOGS_DIR="/opt/sonarqube/logs" \
     SQ_TEMP_DIR="/opt/sonarqube/temp"
 
-RUN pwd
+RUN pwd; cd /opt; ls
 
-RUN cd /opt; 
-    unzip -q sonarqube.zip; \
+RUN unzip -q sonarqube.zip; \
     mv "sonarqube-${SONARQUBE_VERSION}" sonarqube; \
     rm sonarqube.zip*; \
     rm -rf ${SONARQUBE_HOME}/bin/*; \
