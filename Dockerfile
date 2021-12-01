@@ -16,9 +16,12 @@ ENV JAVA_HOME='/usr/lib/jvm/java-11' \
 
 RUN pwd; cd /opt; pwd
 
-RUN unzip -q sonarqube-${SONARQUBE_VERSION}.zip; \
+RUN curl --fail --location --output sonarqube.zip --silent --show-error "${SONARQUBE_ZIP_URL}"; \
+    curl --fail --location --output sonarqube.zip.asc --silent --show-error "${SONARQUBE_ZIP_URL}.asc"; \
+    gpg --batch --verify sonarqube.zip.asc sonarqube.zip; \
+    unzip -q sonarqube.zip; \
     mv "sonarqube-${SONARQUBE_VERSION}" sonarqube; \
-    rm sonarqube-${SONARQUBE_VERSION}.zip*; \
+    rm sonarqube.zip*; \
     rm -rf ${SONARQUBE_HOME}/bin/*; \
     chown -R sonarqube:sonarqube ${SONARQUBE_HOME}; \
     # this 777 will be replaced by 700 at runtime (allows semi-arbitrary "--user" values)
