@@ -1,9 +1,5 @@
 FROM registry.access.redhat.com/ubi8/openjdk-11
 
-ENV LANG='en_US.UTF-8' \
-    LANGUAGE='en_US:en' \
-    LC_ALL='en_US.UTF-8'
-
 #
 # SonarQube setup
 #
@@ -18,7 +14,7 @@ ENV JAVA_HOME='/usr/lib/jvm/java-11-openjdk' \
     SQ_LOGS_DIR="/opt/sonarqube/logs" \
     SQ_TEMP_DIR="/opt/sonarqube/temp"
 
-RUN ls
+RUN pwd
 
 RUN cd /opt; 
     unzip -q sonarqube.zip; \
