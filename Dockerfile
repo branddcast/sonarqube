@@ -5,8 +5,8 @@ FROM registry.access.redhat.com/ubi8/openjdk-11
 #
 ARG SONARQUBE_VERSION=9.2.1.49989
 ARG SONARQUBE_ZIP_URL=https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-${SONARQUBE_VERSION}.zip
-ENV JAVA_HOME='/usr/lib/jvm/java-11-openjdk' \
-    PATH="/opt/java/openjdk/bin:$PATH" \
+ENV JAVA_HOME='/usr/lib/jvm/java-11' \
+    PATH="/usr/lib/jvm/java-11/bin:$PATH" \
     SONARQUBE_HOME=/opt/sonarqube \
     SONAR_VERSION="${SONARQUBE_VERSION}" \
     SQ_DATA_DIR="/opt/sonarqube/data" \
