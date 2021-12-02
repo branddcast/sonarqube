@@ -43,6 +43,7 @@ RUN set -eux; \
     # this 777 will be replaced by 700 at runtime (allows semi-arbitrary "--user" values)
     chmod -R 777 "${SQ_DATA_DIR}" "${SQ_EXTENSIONS_DIR}" "${SQ_LOGS_DIR}" "${SQ_TEMP_DIR}"; 
 
+RUN pwd; ls;
 COPY run.sh sonar.sh ${SONARQUBE_HOME}/bin/
 
 WORKDIR ${SONARQUBE_HOME}
