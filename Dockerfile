@@ -20,8 +20,6 @@ ENV PATH="/opt/java/openjdk/bin:$PATH" \
     SQ_TEMP_DIR="/opt/sonarqube/temp"
 
 RUN set -eux; \
-    addgroup -S -g 1000 sonarqube; \
-    adduser -S -D -u 1000 -G sonarqube sonarqube; \
     apk add --no-cache --virtual build-dependencies gnupg unzip curl; \
     apk add --no-cache bash su-exec ttf-dejavu openjdk11-jre; \
     # pub   2048R/D26468DE 2015-05-25
