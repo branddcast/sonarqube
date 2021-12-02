@@ -19,7 +19,7 @@ ENV PATH="/opt/java/openjdk/bin:$PATH" \
     SQ_LOGS_DIR="/opt/sonarqube/logs" \
     SQ_TEMP_DIR="/opt/sonarqube/temp"
     
-RUN pwd; cd /tmp; ls;
+RUN find . -name run.sh;
 
 USER root
  
