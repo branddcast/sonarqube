@@ -21,7 +21,7 @@ ENV PATH="/opt/java/openjdk/bin:$PATH" \
 
 USER root
 
-RUN find / -type d -name "inputs";
+RUN cd /opt; ls;
  
 RUN set -eux; \
     echo "networkaddress.cache.ttl=5" >> "${JAVA_HOME}/conf/security/java.security"; \
