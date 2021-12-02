@@ -41,8 +41,7 @@ RUN set -eux; \
     rm sonarqube.zip*; \
     rm -rf ${SONARQUBE_HOME}/bin/*; \
     # this 777 will be replaced by 700 at runtime (allows semi-arbitrary "--user" values)
-    chmod -R 777 "${SQ_DATA_DIR}" "${SQ_EXTENSIONS_DIR}" "${SQ_LOGS_DIR}" "${SQ_TEMP_DIR}"; \
-    apk del --purge build-dependencies;
+    chmod -R 777 "${SQ_DATA_DIR}" "${SQ_EXTENSIONS_DIR}" "${SQ_LOGS_DIR}" "${SQ_TEMP_DIR}"; 
 
 COPY /tmp/build/inputs/run.sh /tmp/build/inputs/sonar.sh ${SONARQUBE_HOME}/bin/
 
