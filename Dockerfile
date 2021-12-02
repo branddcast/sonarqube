@@ -1,4 +1,4 @@
-FROM alpine:3.14
+FROM registry.redhat.io/ubi8/openjdk-11
 
 ENV LANG='en_US.UTF-8' \
     LANGUAGE='en_US:en' \
@@ -7,6 +7,7 @@ ENV LANG='en_US.UTF-8' \
 #
 # SonarQube setup
 #
+RUN echo $JAVA_HOME
 ARG SONARQUBE_VERSION=9.2.1.49989
 ARG SONARQUBE_PORT=9000
 ARG SONARQUBE_ZIP_URL=https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-${SONARQUBE_VERSION}.zip
