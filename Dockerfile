@@ -18,10 +18,10 @@ ENV PATH="/opt/java/openjdk/bin:$PATH" \
     SQ_EXTENSIONS_DIR="/opt/sonarqube/extensions" \
     SQ_LOGS_DIR="/opt/sonarqube/logs" \
     SQ_TEMP_DIR="/opt/sonarqube/temp"
-    
-RUN find / -name run.sh;
 
 USER root
+
+RUN find / -name run.sh;
  
 RUN set -eux; \
     echo "networkaddress.cache.ttl=5" >> "${JAVA_HOME}/conf/security/java.security"; \
