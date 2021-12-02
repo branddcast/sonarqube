@@ -7,7 +7,7 @@ ENV LANG='en_US.UTF-8' \
 #
 # SonarQube setup
 #
-RUN echo $PATH
+LABEL io.openshift.s2i.destination="/tmp"
 ARG SONARQUBE_VERSION=9.2.1.49989
 ARG SONARQUBE_PORT=9000
 ARG SONARQUBE_ZIP_URL=https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-${SONARQUBE_VERSION}.zip
@@ -21,7 +21,7 @@ ENV PATH="/opt/java/openjdk/bin:$PATH" \
 
 USER root
 
-RUN cd /opt; ls; cd run-java; ls;
+RUN cd /opt; ls;
  
 RUN set -eux; \
     echo "networkaddress.cache.ttl=5" >> "${JAVA_HOME}/conf/security/java.security"; \
