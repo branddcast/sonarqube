@@ -51,7 +51,7 @@ RUN set -eux; \
     chmod -R 777 "${SQ_DATA_DIR}" "${SQ_EXTENSIONS_DIR}" "${SQ_LOGS_DIR}" "${SQ_TEMP_DIR}"; \
     apk del --purge build-dependencies;
 
-COPY --chown=sonarqube:sonarqube run.sh sonar.sh ${SONARQUBE_HOME}/bin/
+COPY --chown=sonarqube:sonarqube /tmp/build/inputs/run.sh /tmp/build/inputs/sonar.sh ${SONARQUBE_HOME}/bin/
 
 WORKDIR ${SONARQUBE_HOME}
 EXPOSE ${SONARQUBE_PORT}
