@@ -40,12 +40,11 @@ RUN set -eux; \
     mv "sonarqube-${SONARQUBE_VERSION}" sonarqube; \
     rm sonarqube.zip*; \
     rm -rf ${SONARQUBE_HOME}/bin/*; \
-    chown -R sonarqube:sonarqube ${SONARQUBE_HOME}; \
     # this 777 will be replaced by 700 at runtime (allows semi-arbitrary "--user" values)
     chmod -R 777 "${SQ_DATA_DIR}" "${SQ_EXTENSIONS_DIR}" "${SQ_LOGS_DIR}" "${SQ_TEMP_DIR}"; \
     apk del --purge build-dependencies;
 
-COPY --chown=sonarqube:sonarqube /tmp/build/inputs/run.sh /tmp/build/inputs/sonar.sh ${SONARQUBE_HOME}/bin/
+COPY /tmp/build/inputs/run.sh /tmp/build/inputs/sonar.sh ${SONARQUBE_HOME}/bin/
 
 WORKDIR ${SONARQUBE_HOME}
 EXPOSE ${SONARQUBE_PORT}
