@@ -20,12 +20,6 @@ ENV PATH="/opt/java/openjdk/bin:$PATH" \
     SQ_TEMP_DIR="/opt/sonarqube/temp"
 
 RUN set -eux; \
-    apk add --no-cache --virtual build-dependencies gnupg unzip curl; \
-    apk add --no-cache bash su-exec ttf-dejavu openjdk11-jre; \
-    # pub   2048R/D26468DE 2015-05-25
-    #       Key fingerprint = F118 2E81 C792 9289 21DB  CAB4 CFCA 4A29 D264 68DE
-    # uid                  sonarsource_deployer (Sonarsource Deployer) <infra@sonarsource.com>
-    # sub   2048R/06855C1D 2015-05-25
     echo "networkaddress.cache.ttl=5" >> "${JAVA_HOME}/conf/security/java.security"; \
     sed --in-place --expression="s?securerandom.source=file:/dev/random?securerandom.source=file:/dev/urandom?g" "${JAVA_HOME}/conf/security/java.security"; \
     for server in $(shuf -e ha.pool.sks-keyservers.net \
